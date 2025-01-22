@@ -1,0 +1,44 @@
+.bookings-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--cardBackground);
+    padding: 10px 15px;
+    box-shadow: var(--cardShadow);
+    position: sticky; /* Change to sticky */
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 0;
+    width: 100%;
+    max-width: 1000px; /* Constrain to 1000px */
+    margin: 0 auto; /* Center the navbar */
+    border-bottom: 2px solid var(--cardBorder);
+  }
+  
+  .bookings-navbar-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bookings-navbar-icon {
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+  
+  .bookings-navbar-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .bookings-navbar-right {
+    display: flex;
+    gap: 10px;
+  }

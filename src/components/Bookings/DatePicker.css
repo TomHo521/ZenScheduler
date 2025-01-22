@@ -1,0 +1,72 @@
+/* Date Picker Styles */
+.date-picker {
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: var(--card-shadow);
+    width: 250px;
+    margin: 0 auto;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary);
+  }
+  
+  .calendar-header button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--primary);
+    transition: color 0.3s ease;
+  }
+  
+  .calendar-header button:hover {
+    color: var(--button-hover);
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  
+  .calendar-day-header {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary);
+    text-align: center;
+  }
+  
+  .calendar-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .calendar-day:hover {
+    background-color: var(--primary);
+    color: var(--button-text);
+  }
+  
+  .calendar-day.selected {
+    background-color: var(--primary);
+    color: var(--button-text);
+  }
+  
+  .calendar-day.empty {
+    background-color: transparent;
+    cursor: default;
+  }

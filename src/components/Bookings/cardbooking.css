@@ -1,0 +1,124 @@
+
+
+/* Bookings Container */
+.bookings-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  max-width: 1000px; /* Match the bookings-container width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+
+.bookings-container h2 {
+  color: var(--primary);
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Bookings List Container */
+.bookings-list-container {
+  max-height: 400px; /* Taller scrollable area */
+  overflow-y: auto;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 16px;
+  background-color: var(--card-background);
+  margin-bottom: 30px;
+}
+
+/* Booking Card */
+.booking-card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 16px;
+  margin: 8px 0;
+  transition: box-shadow 0.3s ease;
+}
+
+.booking-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.booking-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-name {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.booking-time {
+  font-size: 14px;
+  color: var(--secondary);
+}
+
+/* Booking Button */
+.booking-button {
+  background-color: var(--primary);
+  color: var(--button-text);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.booking-button:hover {
+  background-color: var(--button-hover);
+}
+
+/* Booking Actions */
+.booking-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Date Picker Section */
+.date-picker-section {
+  background-color: var(--background);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 30px;
+}
+
+.date-picker-section h3 {
+  color: var(--primary);
+  font-size: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.date-picker {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Booking Status */
+.booking-status {
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--text);
+  text-align: center;
+}
+

@@ -1,0 +1,32 @@
+/* TempLandingPage.css */
+.landing-page {
+  text-align: center;
+  margin-top: 50px;
+  width: 100%; /* Ensure it fills the container */
+  max-width: 100%; /* Prevent it from exceeding the container's width */
+}
+
+/* TempLandingPage.css */
+.landing-page h1 {
+  font-size: 2.5rem; /* Adjust font size as needed */
+  word-wrap: break-word; /* Force long text to wrap */
+  overflow-wrap: break-word; /* Alternative for better browser support */
+  max-width: 100%; /* Ensure the h1 doesn't exceed its container's width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  overflow: hidden; /* Prevent text from overflowing */
+}
+
+.landing-links {
+  margin-top: 20px;
+}
+
+.landing-link {
+  margin: 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+}
+
+.landing-link:hover {
+  text-decoration: underline;
+}

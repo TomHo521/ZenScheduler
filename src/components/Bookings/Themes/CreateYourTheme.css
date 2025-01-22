@@ -1,0 +1,9 @@
+.create-your-theme {
+    margin-bottom: 30px;
+  }
+  
+  .create-your-theme h3 {
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
