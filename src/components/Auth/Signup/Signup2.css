@@ -13,8 +13,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px; /* Space between form elements */
-    max-width: 400px;
-    width: 100%;
   }
   
   .auth-form input {
@@ -36,10 +34,10 @@
     color: var(--secondary); /* Use the secondary color variable for placeholder text */
   }
   
-  /* Signup Button */
+  
   .auth-button {
-    background-color: var(--primary); /* Use the primary color variable */
-    color: var(--button-text); /* Use the button text color variable */
+    background-color: var(--primary); /
+    color: var(--button-text); 
     border: none;
     border-radius: 8px;
     padding: 12px;
@@ -50,28 +48,22 @@
   }
   
   .auth-button:hover {
-    background-color: var(--button-hover); /* Use the button hover color variable */
+    background-color: var(--button-hover); 
   }
   
-  .auth-button:disabled {
-    background-color: var(--secondary);
-    cursor: not-allowed;
-  }
-  
-  /* Link to Login */
-  .auth-links {
+  .signup-links {
     margin-top: 16px;
     text-align: center;
   }
   
-  .auth-links a {
-    color: var(--primary); /* Use the primary color variable */
+  .signup-links a {
+    color: var(--primary); 
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
   }
   
-  .auth-links a:hover {
-    color: var(--button-hover); /* Use the button hover color variable */
+  .signup-links a:hover {
+    color: var(--button-hover); 
     text-decoration: underline;
   }
