@@ -67,14 +67,17 @@ const BottomSheet = ({ isOpen, onClose, bookings, theme }) => {
         }}
         {...bind()}
       >
+        {/* Close Button (X Icon) */}
+        <button
+          className="close-button"
+          onClick={onClose}
+          style={{ color: theme.text }}
+        >
+          ×
+        </button>
+
         <div className="bottom-sheet-header">
           <h3 style={{ color: theme.primary }}>Bookings for Selected Day</h3>
-          <button
-            onClick={onClose}
-            style={{ backgroundColor: theme.button.background, color: theme.button.text }}
-          >
-            Close
-          </button>
         </div>
         <div className="bottom-sheet-content">
           {bookings.length > 0 ? (

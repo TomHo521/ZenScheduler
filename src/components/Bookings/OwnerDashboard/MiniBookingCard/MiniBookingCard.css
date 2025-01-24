@@ -1,0 +1,22 @@
+/* OwnerDashboard.css */
+.mini-booking-row {
+  display: flex;
+  gap: 5px; /* Space between MiniBookingCards in the same row */
+  margin-bottom: 5px; /* Space between rows */
+}
+
+.show-more-button {
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  color: inherit;
+  cursor: pointer;
+  margin-top: 5px;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.show-more-button:hover {
+  opacity: 0.8;
+}

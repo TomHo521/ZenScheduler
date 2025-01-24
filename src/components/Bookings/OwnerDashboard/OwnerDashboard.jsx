@@ -74,22 +74,17 @@ const OwnerDashboard = () => {
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
-          events={filteredBookings}
+          events={filteredBookings} // Pass all events to FullCalendar
           headerToolbar={{
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay',
           }}
-          eventContent={(eventInfo) => (
-            <div className="custom-event" style={{ backgroundColor: theme.primary, color: theme.text }}>
-              <strong>{eventInfo.event.title}</strong>
-              <p>Barber: {eventInfo.event.extendedProps.barber}</p>
-            </div>
-          )}
+          dayMaxEvents={2} // Correct parameter for FullCalendar v5+
           height="auto"
           editable={true}
           selectable={true}
-          dateClick={handleDayClick} // Use dateClick instead of dayClick
+          dateClick={handleDayClick} // Handle day clicks to open the bottom sheet
         />
       </div>
 
@@ -105,6 +100,477 @@ const OwnerDashboard = () => {
 };
 
 export default OwnerDashboard;
+
+// import React, { useEffect, useState } from 'react';
+// import FullCalendar from '@fullcalendar/react';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import timeGridPlugin from '@fullcalendar/timegrid';
+// import interactionPlugin from '@fullcalendar/interaction';
+// import BottomSheet from './BottomSheet/BottomSheet';
+// import MiniBookingCard from './MiniBookingCard/MiniBookingCard';
+// import { initialBookings } from './bookingsData';
+// import { themes } from '../Themes/themes';
+// import './OwnerDashboard.css';
+
+// const OwnerDashboard = () => {
+//   const [bookings, setBookings] = useState([]);
+//   const [filteredBookings, setFilteredBookings] = useState([]);
+//   const [selectedBarber, setSelectedBarber] = useState('All');
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [theme, setTheme] = useState(themes.default);
+//   const [selectedDayBookings, setSelectedDayBookings] = useState([]);
+//   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+//   // Extract unique barber names for the filter dropdown
+//   const barbers = [...new Set(initialBookings.map(booking => booking.name))];
+
+//   useEffect(() => {
+//     // Map bookings to FullCalendar events
+//     const events = initialBookings.map(booking => ({
+//       title: `${booking.name} - ${booking.timeRange}`,
+//       start: booking.startTime,
+//       end: booking.endTime,
+//       extendedProps: {
+//         id: booking.id,
+//         barber: booking.name,
+//         customer: booking.name,
+//       },
+//     }));
+//     setBookings(events);
+//     setFilteredBookings(events);
+//   }, []);
+
+//   // Filter bookings by barber and search query
+//   useEffect(() => {
+//     let filtered = bookings;
+
+//     if (selectedBarber !== 'All') {
+//       filtered = filtered.filter(event => event.extendedProps.barber === selectedBarber);
+//     }
+
+//     if (searchQuery) {
+//       filtered = filtered.filter(event =>
+//         event.extendedProps.customer.toLowerCase().includes(searchQuery.toLowerCase())
+//       );
+//     }
+
+//     setFilteredBookings(filtered);
+//   }, [selectedBarber, searchQuery, bookings]);
+
+//   // Handle day click
+//   const handleDayClick = (info) => {
+//     const dayBookings = filteredBookings.filter(event => event.start.split('T')[0] === info.dateStr);
+//     setSelectedDayBookings(dayBookings);
+//     setIsBottomSheetOpen(true);
+//   };
+
+//   // Close bottom sheet
+//   const closeBottomSheet = () => {
+//     setIsBottomSheetOpen(false);
+//   };
+
+//   // Render event content with a limited number of MiniBookingCards
+//   const renderEventContent = (eventInfo) => {
+//     const MAX_VISIBLE_BOOKINGS = 2; // Show only 2 bookings per day
+//     const dateStr = eventInfo.event.startStr.split('T')[0]; // Use startStr to get the date
+//     const bookingsForDay = filteredBookings.filter(event => event.start.split('T')[0] === dateStr);
+
+//     return (
+//       <>
+//         {bookingsForDay.slice(0, MAX_VISIBLE_BOOKINGS).map((booking) => (
+//           <MiniBookingCard key={booking.extendedProps.id} booking={booking} theme={theme} />
+//         ))}
+//         {bookingsForDay.length > MAX_VISIBLE_BOOKINGS && (
+//           <button
+//             className="show-more-button"
+//             onClick={() => handleDayClick({ dateStr })}
+//             style={{ color: theme.text }}
+//           >
+//             Show More
+//           </button>
+//         )}
+//       </>
+//     );
+//   };
+
+//   return (
+//     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
+//       <h1>Barbershop Appointments</h1>
+
+//       {/* Calendar */}
+//       <div className="calendar-container" style={{ backgroundColor: theme.card.background, boxShadow: theme.card.shadow }}>
+//         <FullCalendar
+//           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+//           initialView="dayGridMonth"
+//           events={filteredBookings}
+//           headerToolbar={{
+//             left: 'prev,next today',
+//             center: 'title',
+//             right: 'dayGridMonth,timeGridWeek,timeGridDay',
+//           }}
+//           eventContent={renderEventContent}
+//           height="auto"
+//           editable={true}
+//           selectable={true}
+//           dateClick={handleDayClick}
+//         />
+//       </div>
+
+//       {/* Bottom Sheet */}
+//       <BottomSheet
+//         isOpen={isBottomSheetOpen}
+//         onClose={closeBottomSheet}
+//         bookings={selectedDayBookings}
+//         theme={theme}
+//       />
+//     </div>
+//   );
+// };
+
+// export default OwnerDashboard;
+
+// import React, { useEffect, useState } from 'react';
+// import FullCalendar from '@fullcalendar/react';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import timeGridPlugin from '@fullcalendar/timegrid';
+// import interactionPlugin from '@fullcalendar/interaction';
+// import BottomSheet from './BottomSheet/BottomSheet';
+// import MiniBookingCard from './MiniBookingCard/MiniBookingCard';
+// import { initialBookings } from './bookingsData';
+// import { themes } from '../Themes/themes';
+// import './OwnerDashboard.css';
+
+// const OwnerDashboard = () => {
+//   const [bookings, setBookings] = useState([]);
+//   const [filteredBookings, setFilteredBookings] = useState([]);
+//   const [selectedBarber, setSelectedBarber] = useState('All');
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [theme, setTheme] = useState(themes.default);
+//   const [selectedDayBookings, setSelectedDayBookings] = useState([]);
+//   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+//   // Extract unique barber names for the filter dropdown
+//   const barbers = [...new Set(initialBookings.map(booking => booking.name))];
+
+//   useEffect(() => {
+//     // Map bookings to FullCalendar events
+//     const events = initialBookings.map(booking => ({
+//       title: `${booking.name} - ${booking.timeRange}`,
+//       start: booking.startTime,
+//       end: booking.endTime,
+//       extendedProps: {
+//         id: booking.id,
+//         barber: booking.name,
+//         customer: booking.name,
+//       },
+//     }));
+//     setBookings(events);
+//     setFilteredBookings(events);
+//   }, []);
+
+//   // Filter bookings by barber and search query
+//   useEffect(() => {
+//     let filtered = bookings;
+
+//     if (selectedBarber !== 'All') {
+//       filtered = filtered.filter(event => event.extendedProps.barber === selectedBarber);
+//     }
+
+//     if (searchQuery) {
+//       filtered = filtered.filter(event =>
+//         event.extendedProps.customer.toLowerCase().includes(searchQuery.toLowerCase())
+//       );
+//     }
+
+//     setFilteredBookings(filtered);
+//   }, [selectedBarber, searchQuery, bookings]);
+
+//   // Handle day click
+//   const handleDayClick = (info) => {
+//     const dayBookings = filteredBookings.filter(event => event.start.split('T')[0] === info.dateStr);
+//     setSelectedDayBookings(dayBookings);
+//     setIsBottomSheetOpen(true);
+//   };
+
+//   // Close bottom sheet
+//   const closeBottomSheet = () => {
+//     setIsBottomSheetOpen(false);
+//   };
+
+//   // Render event content with a "Show More" button if there are too many bookings
+//   const renderEventContent = (eventInfo) => {
+//     const MAX_VISIBLE_BOOKINGS = 2; // Show only 2 bookings per day
+//     const dateStr = eventInfo.event.startStr.split('T')[0]; // Use startStr instead of start
+//     const bookingsForDay = filteredBookings.filter(event => event.start.split('T')[0] === dateStr);
+
+//     return (
+//       <>
+//         {bookingsForDay.slice(0, MAX_VISIBLE_BOOKINGS).map((booking) => (
+//           <MiniBookingCard key={booking.extendedProps.id} booking={booking} theme={theme} />
+//         ))}
+//         {bookingsForDay.length > MAX_VISIBLE_BOOKINGS && (
+//           <button
+//             className="show-more-button"
+//             onClick={() => handleDayClick({ dateStr })}
+//             style={{ color: theme.text }}
+//           >
+//             Show More
+//           </button>
+//         )}
+//       </>
+//     );
+//   };
+
+//   return (
+//     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
+//       <h1>Barbershop Appointments</h1>
+
+//       {/* Calendar */}
+//       <div className="calendar-container" style={{ backgroundColor: theme.card.background, boxShadow: theme.card.shadow }}>
+//         <FullCalendar
+//           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+//           initialView="dayGridMonth"
+//           events={filteredBookings}
+//           headerToolbar={{
+//             left: 'prev,next today',
+//             center: 'title',
+//             right: 'dayGridMonth,timeGridWeek,timeGridDay',
+//           }}
+//           eventContent={renderEventContent}
+//           height="auto"
+//           editable={true}
+//           selectable={true}
+//           dateClick={handleDayClick}
+//         />
+//       </div>
+
+//       {/* Bottom Sheet */}
+//       <BottomSheet
+//         isOpen={isBottomSheetOpen}
+//         onClose={closeBottomSheet}
+//         bookings={selectedDayBookings}
+//         theme={theme}
+//       />
+//     </div>
+//   );
+// };
+
+// export default OwnerDashboard;
+
+// import React, { useEffect, useState } from 'react';
+// import FullCalendar from '@fullcalendar/react';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import timeGridPlugin from '@fullcalendar/timegrid';
+// import interactionPlugin from '@fullcalendar/interaction';
+// import BottomSheet from './BottomSheet/BottomSheet';
+// import MiniBookingCard from './MiniBookingCard/MiniBookingCard'; // Import the MiniBookingCard component
+// import { initialBookings } from './bookingsData';
+// import { themes } from '../Themes/themes';
+// import './OwnerDashboard.css';
+
+// const OwnerDashboard = () => {
+//   const [bookings, setBookings] = useState([]);
+//   const [filteredBookings, setFilteredBookings] = useState([]);
+//   const [selectedBarber, setSelectedBarber] = useState('All');
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [theme, setTheme] = useState(themes.default);
+//   const [selectedDayBookings, setSelectedDayBookings] = useState([]);
+//   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+//   // Extract unique barber names for the filter dropdown
+//   const barbers = [...new Set(initialBookings.map(booking => booking.name))];
+
+//   useEffect(() => {
+//     // Map bookings to FullCalendar events
+//     const events = initialBookings.map(booking => ({
+//       title: `${booking.name} - ${booking.timeRange}`,
+//       start: booking.startTime,
+//       end: booking.endTime,
+//       extendedProps: {
+//         id: booking.id,
+//         barber: booking.name,
+//         customer: booking.name,
+//       },
+//     }));
+//     setBookings(events);
+//     setFilteredBookings(events);
+//   }, []);
+
+//   // Filter bookings by barber and search query
+//   useEffect(() => {
+//     let filtered = bookings;
+
+//     if (selectedBarber !== 'All') {
+//       filtered = filtered.filter(event => event.extendedProps.barber === selectedBarber);
+//     }
+
+//     if (searchQuery) {
+//       filtered = filtered.filter(event =>
+//         event.extendedProps.customer.toLowerCase().includes(searchQuery.toLowerCase())
+//       );
+//     }
+
+//     setFilteredBookings(filtered);
+//   }, [selectedBarber, searchQuery, bookings]);
+
+//   // Handle day click
+//   const handleDayClick = (info) => {
+//     const dayBookings = filteredBookings.filter(event => event.start.split('T')[0] === info.dateStr);
+//     setSelectedDayBookings(dayBookings);
+//     setIsBottomSheetOpen(true);
+//   };
+
+//   // Close bottom sheet
+//   const closeBottomSheet = () => {
+//     setIsBottomSheetOpen(false);
+//   };
+
+//   return (
+//     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
+//       <h1>Barbershop Appointments</h1>
+
+//       {/* Calendar */}
+//       <div className="calendar-container" style={{ backgroundColor: theme.card.background, boxShadow: theme.card.shadow }}>
+//         <FullCalendar
+//           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+//           initialView="dayGridMonth"
+//           events={filteredBookings}
+//           headerToolbar={{
+//             left: 'prev,next today',
+//             center: 'title',
+//             right: 'dayGridMonth,timeGridWeek,timeGridDay',
+//           }}
+//           eventContent={(eventInfo) => (
+//             <MiniBookingCard booking={eventInfo.event} theme={theme} />
+//           )}
+//           height="auto"
+//           editable={true}
+//           selectable={true}
+//           dateClick={handleDayClick} // Use dateClick instead of dayClick
+//         />
+//       </div>
+
+//       {/* Bottom Sheet */}
+//       <BottomSheet
+//         isOpen={isBottomSheetOpen}
+//         onClose={closeBottomSheet}
+//         bookings={selectedDayBookings}
+//         theme={theme}
+//       />
+//     </div>
+//   );
+// };
+
+// export default OwnerDashboard;
+
+
+// import React, { useEffect, useState } from 'react';
+// import FullCalendar from '@fullcalendar/react';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import timeGridPlugin from '@fullcalendar/timegrid';
+// import interactionPlugin from '@fullcalendar/interaction';
+// import BottomSheet from './BottomSheet/BottomSheet';
+// import { initialBookings } from './bookingsData';
+// import { themes } from '../Themes/themes';
+// import './OwnerDashboard.css';
+
+// const OwnerDashboard = () => {
+//   const [bookings, setBookings] = useState([]);
+//   const [filteredBookings, setFilteredBookings] = useState([]);
+//   const [selectedBarber, setSelectedBarber] = useState('All');
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [theme, setTheme] = useState(themes.default);
+//   const [selectedDayBookings, setSelectedDayBookings] = useState([]);
+//   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+//   // Extract unique barber names for the filter dropdown
+//   const barbers = [...new Set(initialBookings.map(booking => booking.name))];
+
+//   useEffect(() => {
+//     // Map bookings to FullCalendar events
+//     const events = initialBookings.map(booking => ({
+//       title: `${booking.name} - ${booking.timeRange}`,
+//       start: booking.startTime,
+//       end: booking.endTime,
+//       extendedProps: {
+//         id: booking.id,
+//         barber: booking.name,
+//         customer: booking.name,
+//       },
+//     }));
+//     setBookings(events);
+//     setFilteredBookings(events);
+//   }, []);
+
+//   // Filter bookings by barber and search query
+//   useEffect(() => {
+//     let filtered = bookings;
+
+//     if (selectedBarber !== 'All') {
+//       filtered = filtered.filter(event => event.extendedProps.barber === selectedBarber);
+//     }
+
+//     if (searchQuery) {
+//       filtered = filtered.filter(event =>
+//         event.extendedProps.customer.toLowerCase().includes(searchQuery.toLowerCase())
+//       );
+//     }
+
+//     setFilteredBookings(filtered);
+//   }, [selectedBarber, searchQuery, bookings]);
+
+//   // Handle day click
+//   const handleDayClick = (info) => {
+//     const dayBookings = filteredBookings.filter(event => event.start.split('T')[0] === info.dateStr);
+//     setSelectedDayBookings(dayBookings);
+//     setIsBottomSheetOpen(true);
+//   };
+
+//   // Close bottom sheet
+//   const closeBottomSheet = () => {
+//     setIsBottomSheetOpen(false);
+//   };
+
+//   return (
+//     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
+//       <h1>Barbershop Appointments</h1>
+
+//       {/* Calendar */}
+//       <div className="calendar-container" style={{ backgroundColor: theme.card.background, boxShadow: theme.card.shadow }}>
+//         <FullCalendar
+//           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+//           initialView="dayGridMonth"
+//           events={filteredBookings}
+//           headerToolbar={{
+//             left: 'prev,next today',
+//             center: 'title',
+//             right: 'dayGridMonth,timeGridWeek,timeGridDay',
+//           }}
+//           eventContent={(eventInfo) => (
+//             <div className="custom-event" style={{ backgroundColor: theme.primary, color: theme.text }}>
+//               <strong>{eventInfo.event.title}</strong>
+//               <p>Barber: {eventInfo.event.extendedProps.barber}</p>
+//             </div>
+//           )}
+//           height="auto"
+//           editable={true}
+//           selectable={true}
+//           dateClick={handleDayClick} // Use dateClick instead of dayClick
+//         />
+//       </div>
+
+//       {/* Bottom Sheet */}
+//       <BottomSheet
+//         isOpen={isBottomSheetOpen}
+//         onClose={closeBottomSheet}
+//         bookings={selectedDayBookings}
+//         theme={theme}
+//       />
+//     </div>
+//   );
+// };
+
+// export default OwnerDashboard;
 
 // import React, { useEffect, useState } from 'react';
 // import FullCalendar from '@fullcalendar/react';
