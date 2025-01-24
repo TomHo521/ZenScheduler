@@ -23,6 +23,10 @@ const TempLandingPage = () => {
         <Link to="/settings" className="landing-link" style={{ backgroundColor: theme.primary, color: theme.buttonText }}>
           Go to Settings
         </Link>
+          <Link to="/dashboard" className="landing-link" style={{ backgroundColor: theme.primary, color: theme.buttonText }}>
+          Owner Dashboard
+        </Link>
+
         {!currentUser && (
           <>
             <Link to="/login" className="landing-link" style={{ backgroundColor: theme.primary, color: theme.buttonText }}>

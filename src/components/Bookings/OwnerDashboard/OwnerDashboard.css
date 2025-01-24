@@ -1,0 +1,176 @@
+/* OwnerDashboard.css */
+
+/* General Styles */
+.dashboard-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--text);
+  }
+  
+  .dashboard-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary);
+  }
+  
+  /* Theme Variables */
+  :root {
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --background: #ffffff;
+    --text: #333333;
+    --button-background: #007bff;
+    --button-text: #ffffff;
+    --button-hover: #0056b3;
+    --card-background: #f9f9f9;
+    --card-border: #e0e0e0;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Calendar Container */
+  .calendar-container {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--card-background);
+    box-shadow: var(--card-shadow);
+  }
+  
+  /* Custom Event Styling */
+  .custom-event {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--primary);
+    color: var(--button-text);
+  }
+  
+  .custom-event strong {
+    font-size: 14px;
+  }
+  
+  .custom-event p {
+    margin: 5px 0 0;
+    font-size: 12px;
+  }
+  
+  /* Hover Effect for Calendar Days */
+  .fc-daygrid-day:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue highlight */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  .modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: var(--card-background);
+    color: var(--text);
+    box-shadow: var(--card-shadow);
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+    color: var(--primary);
+  }
+  
+  .booking-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  
+  .booking-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Button Styles */
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: var(--button-hover);
+  }
+  
+  /* Filters and Search */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .filters select,
+  .filters input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-background);
+    color: var(--text);
+  }
+  
+  .filters input::placeholder {
+    color: var(--secondary);
+  }
+  
+  /* Statistics Panel */
+  .statistics {
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: var(--card-background);
+    box-shadow: var(--card-shadow);
+  }
+  
+  .statistics h3 {
+    margin-top: 0;
+    color: var(--primary);
+  }
+  
+  .statistics p {
+    margin: 5px 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .filters {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .filters select,
+    .filters input,
+    .filters button {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .modal-content {
+      max-width: 90%;
+    }
+  }

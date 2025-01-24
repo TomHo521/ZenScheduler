@@ -11,6 +11,7 @@ import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
 import Profile from './components/Profile/Profile';
 import './App.css';
+import OwnerDashboard from './components/Bookings/OwnerDashboard/OwnerDashboard';
 
 const App = () => {
   return (
@@ -50,6 +51,16 @@ const App = () => {
                 element={
                   <Layout title="Bookings">
                     <Bookings />
+                  </Layout>
+                }
+              />
+              
+              {/* Dashboard Page */}
+                <Route
+                path="/dashboard"
+                element={
+                  <Layout title="Dashboard">
+                    <OwnerDashboard/>
                   </Layout>
                 }
               />
