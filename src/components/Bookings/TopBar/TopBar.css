@@ -35,3 +35,9 @@
     flex-grow: 1;
     text-align: center;
   }
+
+  /* TopBar.css */
+.top-bar-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

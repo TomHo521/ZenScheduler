@@ -1,56 +1,131 @@
-// App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './components/Bookings/Themes/ThemeContext'; // Import ThemeProvider
-import Layout from './components/Bookings/TopBar/Layout'; // Import the Layout component
-import TempLandingPage from './components/Bookings/TempLandingPage'; // Import TempLandingPage
-import Bookings from './components/Bookings/Bookings'; // Import Bookings component
-import Settings from './components/Bookings/Themes/Settings'; // Import Settings component
+import { ThemeProvider } from './components/Bookings/Themes/ThemeContext';
+import { AuthProvider } from './components/Auth/AuthContext';
+import Layout from './components/Bookings/TopBar/Layout';
+import TempLandingPage from './components/Bookings/TempLandingPage';
+import Bookings from './components/Bookings/Bookings';
+import Settings from './components/Bookings/Themes/Settings';
+import Login from './components/Auth/Login/Login';
+import Signup from './components/Auth/Signup/Signup';
+import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
+import Profile from './components/Profile/Profile'; // Import Profile
 import './App.css';
 
 const App = () => {
   return (
     <ThemeProvider>
-      <Router>
-        <div>
-          <Routes>
-            {/* Landing Page */}
-            <Route
-              path="/"
-              element={
-                <Layout title="Home">
-                  <TempLandingPage />
-                </Layout>
-              }
-            />
+      <AuthProvider>
+        <Router>
+          <div>
+            <Routes>
+              {/* Landing Page */}
+              <Route
+                path="/"
+                element={
+                  <Layout title="Home">
+                    <TempLandingPage />
+                  </Layout>
+                }
+              />
 
-            {/* Bookings Page */}
-            <Route
-              path="/bookings"
-              element={
-                <Layout title="Bookings">
-                  <Bookings />
-                </Layout>
-              }
-            />
+              {/* Auth Pages */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
 
-            {/* Settings Page */}
-            <Route
-              path="/settings"
-              element={
-                <Layout title="Settings">
-                  <Settings />
-                </Layout>
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
+              {/* Profile Page */}
+              <Route
+                path="/profile"
+                element={
+                  <Layout title="Profile">
+                    <Profile />
+                  </Layout>
+                }
+              />
+
+              {/* Bookings Page */}
+              <Route
+                path="/bookings"
+                element={
+                  <Layout title="Bookings">
+                    <Bookings />
+                  </Layout>
+                }
+              />
+
+              {/* Settings Page */}
+              <Route
+                path="/settings"
+                element={
+                  <Layout title="Settings">
+                    <Settings />
+                  </Layout>
+                }
+              />
+            </Routes>
+          </div>
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 };
 
 export default App;
+
+
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { ThemeProvider } from './components/Bookings/Themes/ThemeContext'; // Import ThemeProvider
+// import Layout from './components/Bookings/TopBar/Layout'; // Import the Layout component
+// import TempLandingPage from './components/Bookings/TempLandingPage'; // Import TempLandingPage
+// import Bookings from './components/Bookings/Bookings'; // Import Bookings component
+// import Settings from './components/Bookings/Themes/Settings'; // Import Settings component
+// import './App.css';
+
+// const App = () => {
+//   return (
+//     <ThemeProvider>
+//       <Router>
+//         <div>
+//           <Routes>
+//             {/* Landing Page */}
+//             <Route
+//               path="/"
+//               element={
+//                 <Layout title="Home">
+//                   <TempLandingPage />
+//                 </Layout>
+//               }
+//             />
+
+//             {/* Bookings Page */}
+//             <Route
+//               path="/bookings"
+//               element={
+//                 <Layout title="Bookings">
+//                   <Bookings />
+//                 </Layout>
+//               }
+//             />
+
+//             {/* Settings Page */}
+//             <Route
+//               path="/settings"
+//               element={
+//                 <Layout title="Settings">
+//                   <Settings />
+//                 </Layout>
+//               }
+//             />
+//           </Routes>
+//         </div>
+//       </Router>
+//     </ThemeProvider>
+//   );
+// };
+
+// export default App;
 
 
 

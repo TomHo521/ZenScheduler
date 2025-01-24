@@ -6,6 +6,28 @@
 }
 
 :root {
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --background: #f8f9fa;
+  --text: #212529;
+  --card-background: #ffffff;
+  --card-border: #e9ecef;
+  --button-text: #ffffff;
+  --button-hover: #0056b3;
+}
+
+[data-theme='dark'] {
+  --primary: #1e90ff;
+  --secondary: #6c757d;
+  --background: #121212;
+  --text: #ffffff;
+  --card-background: #1e1e1e;
+  --card-border: #333333;
+  --button-text: #ffffff;
+  --button-hover: #0077cc;
+}
+
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

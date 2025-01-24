@@ -1,0 +1,49 @@
+/* AuthPage Container */
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  padding: 20px;
+  background-color: var(--background); /* Use the background color variable */
+  color: var(--text); /* Use the text color variable */
+}
+
+/* Form Container */
+.auth-form-container {
+  width: 100%;
+  max-width: 400px; /* Limit the width of the form */
+  padding: 32px;
+  background-color: var(--card-background); /* Use the card background color variable */
+  border-radius: 12px;
+  box-shadow: var(--card-shadow); /* Use the card shadow variable */
+  border: 1px solid var(--card-border); /* Use the card border color variable */
+}
+
+.auth-page h2 {
+  color: var(--primary); /* Use the primary color variable */
+  font-size: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Links between pages */
+.auth-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.auth-links a {
+  color: var(--primary); /* Use the primary color variable */
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  display: block; /* Make links block-level for better spacing */
+  margin: 8px 0; /* Add vertical spacing between links */
+}
+
+.auth-links a:hover {
+  color: var(--button-hover); /* Use the button hover color variable */
+  text-decoration: underline;
+}

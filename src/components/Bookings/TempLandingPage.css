@@ -1,19 +1,70 @@
+
 /* TempLandingPage.css */
 .landing-page {
   text-align: center;
   margin-top: 50px;
   width: 100%; /* Ensure it fills the container */
   max-width: 100%; /* Prevent it from exceeding the container's width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
 }
 
-/* TempLandingPage.css */
 .landing-page h1 {
   font-size: 2.5rem; /* Adjust font size as needed */
   word-wrap: break-word; /* Force long text to wrap */
   overflow-wrap: break-word; /* Alternative for better browser support */
   max-width: 100%; /* Ensure the h1 doesn't exceed its container's width */
-  box-sizing: border-box; /* Include padding and border in the element's total width */
   overflow: hidden; /* Prevent text from overflowing */
+  margin-bottom: 30px; /* Add spacing below the heading */
+}
+
+.landing-links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between links */
+  width: 100%;
+  max-width: 300px; /* Limit the width of the links container */
+}
+
+.landing-link {
+  margin: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 12px 24px; /* Add padding for better clickability */
+  border-radius: 8px; /* Rounded corners */
+  background-color: var(--primary); /* Use theme primary color */
+  color: var(--button-text); /* Use theme button text color */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  text-align: center;
+}
+
+.landing-link:hover {
+  background-color: var(--button-hover); /* Use theme button hover color */
+  text-decoration: none; /* Remove underline on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+
+/* TempLandingPage.css */
+/* .landing-page {
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.landing-page h1 {
+  font-size: 2.5rem;
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+  max-width: 100%; 
+  box-sizing: border-box;
+  overflow: hidden; 
 }
 
 .landing-links {
@@ -29,4 +80,4 @@
 
 .landing-link:hover {
   text-decoration: underline;
-}
+} */
