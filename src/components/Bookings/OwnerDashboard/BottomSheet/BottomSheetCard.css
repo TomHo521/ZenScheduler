@@ -1,0 +1,183 @@
+/* BottomSheetCard.css */
+
+.booking-item {
+    padding: 20px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background-color: var(--card-background);
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+  
+  .booking-item.canceled {
+    opacity: 0.8; /* Slightly darker opacity for canceled events */
+    background-color: #b0b0b0; /* Darker grey background */
+    border-color: #333333; /* Very dark grey border for canceled cards */
+  }
+  
+  .booking-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+  }
+  
+  .booking-item-header {
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .booking-item-header h4 {
+    margin: 0;
+    font-size: 22px; /* Slightly larger font size */
+    font-weight: 600;
+    color: var(--primary);
+  }
+  
+  .booking-time {
+    margin: 4px 0 0;
+    font-size: 18px; /* Slightly larger font size */
+    color: var(--secondary);
+  }
+  
+  .booking-item-details {
+    font-size: 18px; /* Slightly larger font size */
+    line-height: 1.5; /* Reduced line height for tighter spacing */
+    font-family: 'Bebas Neue', sans-serif; /* Ensure the same font is used */
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0; /* Reduced margin for tighter spacing */
+  }
+  
+  .detail-label {
+    font-weight: 600;
+    color: var(--primary);
+    flex: 1;
+  }
+  
+  .detail-value {
+    flex: 2;
+    text-align: right;
+    color: var(--text);
+  }
+  
+  /* Event Date */
+  .event-date {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  
+  /* Action Icons */
+  .action-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px; /* Space between icons */
+  }
+  
+  .icon-container {
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .icon-container:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light grey background on hover */
+  }
+  
+  .cancel-icon {
+    color: #ff4444; /* Red color for cancel icon */
+    font-size: 18px;
+  }
+  
+  .delete-icon {
+    color: #666; /* Grey color for delete icon */
+    font-size: 18px;
+  }
+  
+  .undelete-icon {
+    color: #007bff; /* Blue color for undelete icon */
+    font-size: 18px;
+  }
+  
+  /* CANCELED Text */
+  .canceled-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: 600;
+    color: #FF0000; /* Bold red color for CANCELED text */
+    opacity: 0.8;
+    font-family: 'Bebas Neue', sans-serif; /* Use the same font as the title */
+  }
+  
+  /* Fade-out animation */
+  .fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Recycle Bin Section */
+.recycle-bin-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+.recycle-bin-button {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recycle-bin-button:hover {
+  opacity: 0.8;
+}
+
+.deleted-items-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* BottomSheetCard.css */
+
+/* Existing styles */
+.booking-item {
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background-color: var(--card-background);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  position: relative;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+/* New deletion animation */
+.booking-item.fade-out {
+  opacity: 0;
+  transform: translateX(100%) scale(0.9); /* Slide out to the right and scale down */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Slower transition */
+}

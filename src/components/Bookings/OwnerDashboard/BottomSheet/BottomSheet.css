@@ -1,81 +1,127 @@
 /* BottomSheet.css */
 
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  z-index: 999; /* Ensure it's below the bottom sheet but above other content */
-}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); /* Import Bebas Neue font */
 
-/* Bottom Sheet */
-.bottom-sheet {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px; /* Limit width to 600px */
-  height: 50vh;
-  background-color: var(--card-background);
-  color: var(--text);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+.booking-item {
   padding: 20px;
-  touch-action: none; /* Prevent scrolling while dragging */
-  border: 2px solid var(--primary); /* Add border for snazziness */
-  z-index: 1000; /* Ensure it's above the overlay */
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background-color: var(--card-background);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%; /* Ensure the card takes full width */
+  position: relative; /* For positioning icons and CANCELED text */
+  font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font for all text */
 }
 
-.bottom-sheet-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.booking-item.canceled {
+  opacity: 0.8; /* Slightly darker opacity for canceled events */
+  background-color: #b0b0b0; /* Darker grey background */
+  border-color: #333333; /* Very dark grey border for canceled cards */
 }
 
-.bottom-sheet-header h3 {
+.booking-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+}
+
+.booking-item-header {
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.booking-item-header h4 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 22px; /* Slightly larger font size */
+  font-weight: 600;
   color: var(--primary);
 }
 
-.bottom-sheet-content {
-  overflow-y: auto;
-  max-height: calc(50vh - 80px);
-  padding: 10px;
+.booking-time {
+  margin: 4px 0 0;
+  font-size: 18px; /* Slightly larger font size */
+  color: var(--secondary);
 }
 
-.booking-item {
-  margin-bottom: 15px;
-  padding: 10px;
-  border-bottom: 2px solid var(--primary);
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.05); /* Subtle background for each booking */
+.booking-item-details {
+  font-size: 18px; /* Slightly larger font size */
+  line-height: 1.5; /* Reduced line height for tighter spacing */
+  font-family: 'Bebas Neue', sans-serif; /* Ensure the same font is used */
 }
 
-.booking-item:last-child {
-  border-bottom: none;
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0; /* Reduced margin for tighter spacing */
 }
 
-.booking-item p {
-  margin: 5px 0;
+.detail-label {
+  font-weight: 600;
+  color: var(--primary);
+  flex: 1;
 }
 
-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--button-background);
-  color: var(--button-text);
+.detail-value {
+  flex: 2;
+  text-align: right;
+  color: var(--text);
+}
+
+/* Event Date */
+.event-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+/* Action Icons */
+.action-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px; /* Space between icons */
+}
+
+.icon-container {
   cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: var(--button-hover);
+.icon-container:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Light grey background on hover */
+}
+
+.cancel-icon {
+  color: #ff4444; /* Red color for cancel icon */
+  font-size: 18px;
+}
+
+.delete-icon {
+  color: #666; /* Grey color for delete icon */
+  font-size: 18px;
+}
+
+/* CANCELED Text */
+.canceled-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 600;
+  color: #FF0000; /* Bold red color for CANCELED text */
+  opacity: 0.8;
+  font-family: 'Bebas Neue', sans-serif; /* Use the same font as the title */
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
