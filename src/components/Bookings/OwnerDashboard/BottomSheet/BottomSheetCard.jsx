@@ -5,6 +5,7 @@ import { FaTimes, FaBan, FaUndo } from 'react-icons/fa'; // Import icons from re
 const BottomSheetCard = ({ event, theme, onDeleteEvent, onUndeleteEvent, isDeleted }) => {
   const [isCanceled, setIsCanceled] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false); // State for deletion animation
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // State for delete confirmation prompt
 
   // Extract time and date from startTime
   const startTime = new Date(event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -19,10 +20,21 @@ const BottomSheetCard = ({ event, theme, onDeleteEvent, onUndeleteEvent, isDelet
 
   // Handle delete action
   const handleDelete = () => {
+    setShowDeleteConfirmation(true); // Show the confirmation prompt
+  };
+
+  // Confirm deletion
+  const confirmDelete = () => {
     setIsDeleting(true); // Trigger deletion animation
     setTimeout(() => {
       onDeleteEvent(event.id); // Notify parent to delete the event after animation
     }, 500); // Match the duration of the CSS transition (0.5s)
+    setShowDeleteConfirmation(false); // Hide the confirmation prompt
+  };
+
+  // Cancel deletion
+  const cancelDelete = () => {
+    setShowDeleteConfirmation(false); // Hide the confirmation prompt
   };
 
   // Handle undelete action
@@ -31,67 +43,182 @@ const BottomSheetCard = ({ event, theme, onDeleteEvent, onUndeleteEvent, isDelet
   };
 
   return (
-    <div
-      className={`booking-item ${isCanceled ? 'canceled' : ''} ${isDeleting ? 'fade-out' : ''}`}
-      style={{ borderColor: theme.primary }}
-    >
-      {/* Icons in the top-right corner */}
-      <div className="action-icons">
-        {isDeleted ? (
-          <div className="icon-container" onClick={handleUndelete} title="Undelete Appointment">
-            <FaUndo className="undelete-icon" />
+    <>
+      {/* Delete Confirmation Prompt */}
+      {showDeleteConfirmation && (
+        <div className="delete-confirmation-overlay">
+          <div className="delete-confirmation-modal" style={{ backgroundColor: theme.card.background, color: theme.text }}>
+            <p>Are you sure you want to delete this appointment?</p>
+            <div className="confirmation-buttons">
+              <button onClick={confirmDelete} style={{ backgroundColor: theme.primary, color: theme.text }}>
+                Yes, Delete
+              </button>
+              <button onClick={cancelDelete} style={{ backgroundColor: theme.secondary, color: theme.text }}>
+                Cancel
+              </button>
+            </div>
           </div>
-        ) : (
-          <>
-            <div className="icon-container" onClick={handleCancel} title={isCanceled ? "Mark Active" : "Mark Canceled"}>
-              <FaBan className="cancel-icon" />
-            </div>
-            <div className="icon-container" onClick={handleDelete} title="Delete Appointment">
-              <FaTimes className="delete-icon" />
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* CANCELED Text */}
-      {isCanceled && (
-        <div className="canceled-text">CANCELED</div>
+        </div>
       )}
 
-      {/* Event Date */}
-      <div className="event-date">
-        {eventDate}
-      </div>
+      {/* Booking Item */}
+      <div
+        className={`booking-item ${isCanceled ? 'canceled' : ''} ${isDeleting ? 'fade-out' : ''}`}
+        style={{ borderColor: theme.primary }}
+      >
+        {/* Icons in the top-right corner */}
+        <div className="action-icons">
+          {isDeleted ? (
+            <div className="icon-container" onClick={handleUndelete} title="Undelete Appointment">
+              <FaUndo className="undelete-icon" />
+            </div>
+          ) : (
+            <>
+              <div className="icon-container" onClick={handleCancel} title={isCanceled ? "Mark Active" : "Mark Canceled"}>
+                <FaBan className="cancel-icon" />
+              </div>
+              <div className="icon-container" onClick={handleDelete} title="Delete Appointment">
+                <FaTimes className="delete-icon" />
+              </div>
+            </>
+          )}
+        </div>
 
-      <div className="booking-item-header">
-        <h4>{event.extendedProps.service}</h4>
-        <p className="booking-time">{timeRange}</p>
-      </div>
-      <div className="booking-item-details">
-        <div className="detail-row">
-          <span className="detail-label">Customer:</span>
-          <span className="detail-value">{event.extendedProps.customer}</span>
-        </div>
-        <div className="detail-row">
-          <span className="detail-label">Barber:</span>
-          <span className="detail-value">{event.extendedProps.barber}</span>
-        </div>
-        <div className="detail-row">
-          <span className="detail-label">Price:</span>
-          <span className="detail-value">${event.extendedProps.price}</span>
-        </div>
-        {event.extendedProps.notes !== 'no comment' && (
-          <div className="detail-row">
-            <span className="detail-label">Notes:</span>
-            <span className="detail-value">{event.extendedProps.notes}</span>
-          </div>
+        {/* CANCELED Text */}
+        {isCanceled && (
+          <div className="canceled-text">CANCELED</div>
         )}
+
+        {/* Event Date */}
+        <div className="event-date">
+          {eventDate}
+        </div>
+
+        <div className="booking-item-header">
+          <h4>{event.extendedProps.service}</h4>
+          <p className="booking-time">{timeRange}</p>
+        </div>
+        <div className="booking-item-details">
+          <div className="detail-row">
+            <span className="detail-label">Customer:</span>
+            <span className="detail-value">{event.extendedProps.customer}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Barber:</span>
+            <span className="detail-value">{event.extendedProps.barber}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Price:</span>
+            <span className="detail-value">${event.extendedProps.price}</span>
+          </div>
+          {event.extendedProps.notes !== 'no comment' && (
+            <div className="detail-row">
+              <span className="detail-label">Notes:</span>
+              <span className="detail-value">{event.extendedProps.notes}</span>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default BottomSheetCard;
+
+// import React, { useState } from 'react';
+// import './BottomSheetCard.css';
+// import { FaTimes, FaBan, FaUndo } from 'react-icons/fa'; // Import icons from react-icons
+
+// const BottomSheetCard = ({ event, theme, onDeleteEvent, onUndeleteEvent, isDeleted }) => {
+//   const [isCanceled, setIsCanceled] = useState(false);
+//   const [isDeleting, setIsDeleting] = useState(false); // State for deletion animation
+
+//   // Extract time and date from startTime
+//   const startTime = new Date(event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+//   const endTime = new Date(event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+//   const timeRange = `${startTime} - ${endTime}`;
+//   const eventDate = new Date(event.start).toLocaleDateString();
+
+//   // Handle cancel/uncancel action
+//   const handleCancel = () => {
+//     setIsCanceled((prev) => !prev);
+//   };
+
+//   // Handle delete action
+//   const handleDelete = () => {
+//     setIsDeleting(true); // Trigger deletion animation
+//     setTimeout(() => {
+//       onDeleteEvent(event.id); // Notify parent to delete the event after animation
+//     }, 500); // Match the duration of the CSS transition (0.5s)
+//   };
+
+//   // Handle undelete action
+//   const handleUndelete = () => {
+//     onUndeleteEvent(event.id); // Restore the event
+//   };
+
+//   return (
+//     <div
+//       className={`booking-item ${isCanceled ? 'canceled' : ''} ${isDeleting ? 'fade-out' : ''}`}
+//       style={{ borderColor: theme.primary }}
+//     >
+//       {/* Icons in the top-right corner */}
+//       <div className="action-icons">
+//         {isDeleted ? (
+//           <div className="icon-container" onClick={handleUndelete} title="Undelete Appointment">
+//             <FaUndo className="undelete-icon" />
+//           </div>
+//         ) : (
+//           <>
+//             <div className="icon-container" onClick={handleCancel} title={isCanceled ? "Mark Active" : "Mark Canceled"}>
+//               <FaBan className="cancel-icon" />
+//             </div>
+//             <div className="icon-container" onClick={handleDelete} title="Delete Appointment">
+//               <FaTimes className="delete-icon" />
+//             </div>
+//           </>
+//         )}
+//       </div>
+
+//       {/* CANCELED Text */}
+//       {isCanceled && (
+//         <div className="canceled-text">CANCELED</div>
+//       )}
+
+//       {/* Event Date */}
+//       <div className="event-date">
+//         {eventDate}
+//       </div>
+
+//       <div className="booking-item-header">
+//         <h4>{event.extendedProps.service}</h4>
+//         <p className="booking-time">{timeRange}</p>
+//       </div>
+//       <div className="booking-item-details">
+//         <div className="detail-row">
+//           <span className="detail-label">Customer:</span>
+//           <span className="detail-value">{event.extendedProps.customer}</span>
+//         </div>
+//         <div className="detail-row">
+//           <span className="detail-label">Barber:</span>
+//           <span className="detail-value">{event.extendedProps.barber}</span>
+//         </div>
+//         <div className="detail-row">
+//           <span className="detail-label">Price:</span>
+//           <span className="detail-value">${event.extendedProps.price}</span>
+//         </div>
+//         {event.extendedProps.notes !== 'no comment' && (
+//           <div className="detail-row">
+//             <span className="detail-label">Notes:</span>
+//             <span className="detail-value">{event.extendedProps.notes}</span>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default BottomSheetCard;
 
 // import React, { useState } from 'react';
 // import './BottomSheetCard.css';
