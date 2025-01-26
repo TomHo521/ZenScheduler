@@ -1,0 +1,17 @@
+.recycling-bin-icon {
+    position: fixed;
+    bottom: 20px; /* Position at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact center */
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other elements */
+    background-color: white;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  .recycling-bin-icon:hover {
+    transform: translateX(-50%) scale(1.1); /* Scale up slightly on hover */
+  }

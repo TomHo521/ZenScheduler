@@ -1,136 +1,135 @@
-/* BottomSheetCard.css */
-
+/* Base Styles */
 .booking-item {
-    padding: 20px;
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    background-color: var(--card-background);
-    margin-bottom: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 100%;
-    position: relative;
-    font-family: 'Bebas Neue', sans-serif;
-  }
-  
-  .booking-item.canceled {
-    opacity: 0.8; /* Slightly darker opacity for canceled events */
-    background-color: #b0b0b0; /* Darker grey background */
-    border-color: #333333; /* Very dark grey border for canceled cards */
-  }
-  
-  .booking-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
-  }
-  
-  .booking-item-header {
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-  }
-  
-  .booking-item-header h4 {
-    margin: 0;
-    font-size: 22px; /* Slightly larger font size */
-    font-weight: 600;
-    color: var(--primary);
-  }
-  
-  .booking-time {
-    margin: 4px 0 0;
-    font-size: 18px; /* Slightly larger font size */
-    color: var(--secondary);
-  }
-  
-  .booking-item-details {
-    font-size: 18px; /* Slightly larger font size */
-    line-height: 1.5; /* Reduced line height for tighter spacing */
-    font-family: 'Bebas Neue', sans-serif; /* Ensure the same font is used */
-  }
-  
-  .detail-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0; /* Reduced margin for tighter spacing */
-  }
-  
-  .detail-label {
-    font-weight: 600;
-    color: var(--primary);
-    flex: 1;
-  }
-  
-  .detail-value {
-    flex: 2;
-    text-align: right;
-    color: var(--text);
-  }
-  
-  /* Event Date */
-  .event-date {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 12px;
-  }
-  
-  /* Action Icons */
-  .action-icons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 10px; /* Space between icons */
-  }
-  
-  .icon-container {
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .icon-container:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* Light grey background on hover */
-  }
-  
-  .cancel-icon {
-    color: #ff4444; /* Red color for cancel icon */
-    font-size: 18px;
-  }
-  
-  .delete-icon {
-    color: #666; /* Grey color for delete icon */
-    font-size: 18px;
-  }
-  
-  .undelete-icon {
-    color: #007bff; /* Blue color for undelete icon */
-    font-size: 18px;
-  }
-  
-  /* CANCELED Text */
-  .canceled-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    font-weight: 600;
-    color: #FF0000; /* Bold red color for CANCELED text */
-    opacity: 0.8;
-    font-family: 'Bebas Neue', sans-serif; /* Use the same font as the title */
-  }
-  
-  /* Fade-out animation */
-  .fade-out {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background-color: var(--card-background);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  position: relative;
+  font-family: 'Bebas Neue', sans-serif;
+}
 
-  /* Recycle Bin Section */
+.booking-item.canceled {
+  opacity: 0.8;
+  background-color: #b0b0b0;
+  border-color: #333333;
+}
+
+.booking-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.booking-item-header {
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.booking-item-header h4 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.booking-time {
+  margin: 4px 0 0;
+  font-size: 18px;
+  color: var(--secondary);
+}
+
+.booking-item-details {
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--primary);
+  flex: 1;
+}
+
+.detail-value {
+  flex: 2;
+  text-align: right;
+  color: var(--text);
+}
+
+.event-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+/* Action Icons */
+.action-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.icon-container {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.icon-container:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cancel-icon {
+  color: #ff4444;
+  font-size: 18px;
+}
+
+.delete-icon {
+  color: #666;
+  font-size: 18px;
+}
+
+.undelete-icon {
+  color: #007bff;
+  font-size: 18px;
+}
+
+/* CANCELED Text */
+.canceled-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 600;
+  color: #ff0000;
+  opacity: 0.8;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+/* Fade-out Animation */
+.fade-out {
+  opacity: 0;
+  transform: translateX(100%) scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Recycle Bin Section */
 .recycle-bin-section {
   margin-top: 20px;
   padding-top: 20px;
@@ -159,56 +158,50 @@
   gap: 16px;
 }
 
-/* BottomSheetCard.css */
-
-/* Existing styles */
-.booking-item {
-  padding: 20px;
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  background-color: var(--card-background);
-  margin-bottom: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
-  position: relative;
-  font-family: 'Bebas Neue', sans-serif;
-}
-
-/* New deletion animation */
-.booking-item.fade-out {
-  opacity: 0;
-  transform: translateX(100%) scale(0.9); /* Slide out to the right and scale down */
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Slower transition */
-}
-
-/* Delete Confirmation Prompt Styles */
+/* Delete Confirmation Prompt */
 .delete-confirmation-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it appears above other content */
+  z-index: 1000;
 }
 
 .delete-confirmation-modal {
-  padding: 20px;
+  padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  max-width: 300px;
+  max-width: 400px;
   width: 100%;
+  font-family: 'Bebas Neue', sans-serif;
+  background-color: var(--card-background);
+  border: 4px double var(--primary);
+  position: relative;
+}
+
+.delete-confirmation-modal::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  pointer-events: none;
 }
 
 .delete-confirmation-modal p {
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
+  color: var(--text);
 }
 
 .confirmation-buttons {
@@ -218,13 +211,23 @@
 }
 
 .confirmation-buttons button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  font-family: 'Bebas Neue', sans-serif;
+  color: white;
+}
+
+.confirmation-buttons button:first-child {
+  background-color: #d32f2f; /* Darker red */
+}
+
+.confirmation-buttons button:last-child {
+  background-color: var(--secondary);
 }
 
 .confirmation-buttons button:hover {

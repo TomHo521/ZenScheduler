@@ -1,167 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import BottomSheet from './BottomSheet/BottomSheet';
+// OwnerDashboard.jsx
+import React, { useState } from 'react';
+import CalendarDisplay from './CalendarDisplay/CalendarDisplay';
 import { initialBookings } from './bookingsData';
 import { themes } from '../Themes/themes';
 import './OwnerDashboard.css';
 
 const OwnerDashboard = () => {
-  const [bookings, setBookings] = useState([]);
-  const [filteredBookings, setFilteredBookings] = useState([]);
   const [selectedBarber, setSelectedBarber] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState(themes.default);
-  const [selectedDayBookings, setSelectedDayBookings] = useState([]);
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [deletedEvents, setDeletedEvents] = useState({}); // Object to store deleted event IDs
-  const [pendingDeletion, setPendingDeletion] = useState({}); // Track events pending deletion
-
-  // Extract unique barber names for the filter dropdown
-  const barbers = [...new Set(initialBookings.map(booking => booking.name))];
-
-  useEffect(() => {
-    // Map bookings to FullCalendar events
-    const events = initialBookings.map(booking => ({
-      id: booking.id, // Unique identifier
-      title: `${booking.service} - ${booking.customerName}`, // Service and customer name
-      start: booking.startTime, // ISO string for start time
-      end: booking.endTime, // ISO string for end time
-      backgroundColor: getEventColor(booking.service), // Custom color based on service
-      textColor: '#ffffff', // White text for better contrast
-      extendedProps: {
-        barber: booking.workerName, // Barber's name
-        customer: booking.customerName, // Customer's name
-        service: booking.service, // Service type
-        price: booking.price, // Service price
-        notes: booking.notes, // Additional notes
-      },
-    }));
-    setBookings(events);
-    setFilteredBookings(events);
-  }, []);
-
-  // Helper function to assign colors based on service type
-  const getEventColor = (service) => {
-    switch (service) {
-      case 'haircut and shampoo':
-        return '#4CAF50'; // Green
-      case 'hairstyling':
-        return '#2196F3'; // Blue
-      case 'hair coloring':
-        return '#9C27B0'; // Purple
-      case 'beard trim':
-        return '#FF9800'; // Orange
-      case 'full grooming':
-        return '#F44336'; // Red
-      default:
-        return '#607D8B'; // Default gray
-    }
-  };
-
-  // Filter bookings by barber and search query
-  useEffect(() => {
-    let filtered = bookings.filter(event => !deletedEvents[event.id]); // Exclude deleted events
-
-    if (selectedBarber !== 'All') {
-      filtered = filtered.filter(event => event.extendedProps.barber === selectedBarber);
-    }
-
-    if (searchQuery) {
-      filtered = filtered.filter(event =>
-        event.extendedProps.customer.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    setFilteredBookings(filtered);
-  }, [selectedBarber, searchQuery, bookings, deletedEvents]);
-
-  // Handle day click
-  const handleDayClick = (info) => {
-    const dayBookings = filteredBookings.filter(event => event.start.split('T')[0] === info.dateStr);
-    setSelectedDayBookings(dayBookings);
-    setSelectedEvent(null); // Reset selected event when a day is clicked
-    setIsBottomSheetOpen(true);
-  };
-
-  // Handle event click
-  const handleEventClick = (info) => {
-    setSelectedEvent(info.event); // Store the clicked event
-    setIsBottomSheetOpen(true);
-  };
-
-  // Close bottom sheet
-  const closeBottomSheet = () => {
-    setIsBottomSheetOpen(false);
-    setSelectedEvent(null); // Reset selected event when the bottom sheet is closed
-  };
-
-  // Delete an event
-  const handleDeleteEvent = (eventId) => {
-    // Mark the event as pending deletion
-    setPendingDeletion((prev) => ({ ...prev, [eventId]: true }));
-
-    // After the animation duration, remove the event from the list
-    setTimeout(() => {
-      setDeletedEvents((prev) => ({ ...prev, [eventId]: true }));
-      setPendingDeletion((prev) => {
-        const updated = { ...prev };
-        delete updated[eventId];
-        return updated;
-      });
-
-      // Remove the event from the selectedDayBookings if it's currently open
-      if (selectedDayBookings.some(event => event.id === eventId)) {
-        setSelectedDayBookings((prev) => prev.filter(event => event.id !== eventId));
-      }
-    }, 300); // Match the duration of the CSS transition
-  };
 
   return (
     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
       <h1>Barbershop Appointments</h1>
 
-      {/* Calendar */}
-      <div className="calendar-container" style={{ backgroundColor: theme.card.background, boxShadow: theme.card.shadow }}>
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          events={filteredBookings}
-          headerToolbar={{
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay',
-          }}
-          dayMaxEvents={2}
-          height="auto"
-          editable={true}
-          selectable={true}
-          dateClick={handleDayClick}
-          eventClick={handleEventClick} // Add eventClick handler
-        />
-      </div>
-
-      {/* Bottom Sheet */}
-      <BottomSheet
-        isOpen={isBottomSheetOpen}
-        onClose={closeBottomSheet}
-        bookings={
-          selectedEvent
-            ? [selectedEvent]
-            : selectedDayBookings.filter(event => !pendingDeletion[event.id]) // Exclude pending deletion events
-        }
+      {/* Calendar Display */}
+      <CalendarDisplay
+        initialBookings={initialBookings}
+        selectedBarber={selectedBarber}
+        searchQuery={searchQuery}
         theme={theme}
-        onDeleteEvent={handleDeleteEvent} // Pass delete handler
       />
     </div>
   );
 };
 
 export default OwnerDashboard;
-
 // import React, { useEffect, useState } from 'react';
 // import FullCalendar from '@fullcalendar/react';
 // import dayGridPlugin from '@fullcalendar/daygrid';
