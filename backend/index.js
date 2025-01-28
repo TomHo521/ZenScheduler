@@ -6,6 +6,10 @@ import { fileURLToPath } from 'url'; // Needed to resolve __dirname in ES module
 import formRoutes from './routes/formRoutes.js';
 import { initialBookings } from './bookingsData.js'; // Import bookings data
 import { barbers } from './barberData.js'; // Import barbers data
+import kBooking from './utils/kBooking.js';
+
+
+const kBookingSystem = new kBooking(3);  
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,7 +38,6 @@ app.post('/api/bookings', (req, res) => {
   if (!userName || !barberName || !date || !time) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
-
   // Create a new booking object
   const newBooking = {
     id: initialBookings.length + 1, // Generate a new ID
@@ -68,3 +71,39 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+
+// Initialize with a booking limit, for example 3.
+app.get('/rebuildSegmentTree', async (req, res) => {
+    const dateParam = req.query.date; // Date string as a query param (e.g., '2025-01-28')
+
+    if (!dateParam) {
+        return res.status(400).send('Date parameter is required.');
+    }
+
+    try {
+        const date = new Date(dateParam);
+        // Ensure the date is valid
+        if (isNaN(date)) {
+            return res.status(400).send('Invalid date format.');
+        }
+
+        // Rebuild the segment tree for the given date
+        await kBookingSystem.rebuildSegmentTreeForDay(date);
+
+        return res.status(200).send(`Segment Tree rebuilt successfully for ${date.toISOString().split('T')[0]}.`);
+    } catch (error) {
+        console.error('Error rebuilding segment tree:', error);
+        return res.status(500).send('Internal server error.');
+    }
+});
+
+// Simulate fetching bookings from a database for a specific day
+async function getBookingsForDate(date) {
+    // Simulating booking records for the date
+    // Replace this with your actual DB query logic to get bookings for that day
+    return [
+        { startTime: new Date(date.setHours(6, 0, 0, 0)), endTime: new Date(date.setHours(6, 30, 0, 0)) },
+        { startTime: new Date(date.setHours(7, 0, 0, 0)), endTime: new Date(date.setHours(7, 30, 0, 0)) },
+        // Add more bookings as needed
+    ];
+}

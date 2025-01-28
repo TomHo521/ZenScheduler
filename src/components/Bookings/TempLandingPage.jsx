@@ -17,6 +17,9 @@ const TempLandingPage = () => {
         Welcome{currentUser ? `, ${currentUser.email}` : ''}!
       </h1>
       <div className="landing-links">
+        <Link to="/frontpage" className="landing-link" style={{ backgroundColor: theme.primary, color: theme.buttonText }}>
+          Go to FrontPage
+        </Link>
         <Link to="/bookings" className="landing-link" style={{ backgroundColor: theme.primary, color: theme.buttonText }}>
           Go to Bookings
         </Link>
