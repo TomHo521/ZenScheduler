@@ -111,6 +111,22 @@ class kBooking {
             console.error("Error rebuilding segment tree:", error);
         }
     }
+    
+    async rebuildSegmentTreeForMonth(year, month) {
+        const daysInMonth = new Date(year, month, 0).getDate(); // Get the number of days in the month
+    
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month - 1, day); // Create a date object
+            await this.rebuildSegmentTreeForDay(date); // Rebuild for each day
+        }
+    }
+    
+    async rebuildSegmentTreeForYear(year) {
+        for (let month = 1; month <= 12; month++) {
+            await this.rebuildSegmentTreeForMonth(year, month); // Rebuild for each month
+        }
+    }
+    
 }
 
 export default kBooking;
