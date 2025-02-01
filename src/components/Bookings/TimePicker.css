@@ -74,3 +74,39 @@
     display: block;
     margin: 20px auto 0;
   }
+
+
+  /* TimePicker.css */
+.time-column, .barber-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.section-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 0 8px;
+}
+
+.scroll-container {
+  height: 300px; /* Fixed height for scrolling */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.time-slot, .barber-slot {
+  padding: 8px;
+  margin: 4px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+/* Keep existing hover/selected styles */
+.time-slot:hover, .barber-slot:hover { background-color: #f0f0f0; }
+.time-slot.selected, .barber-slot.selected { background-color: #007bff; color: white; }
+.barber-slot.unavailable { opacity: 0.5; cursor: not-allowed; }
