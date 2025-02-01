@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url'; // Needed to resolve __dirname in ES modules
 import formRoutes from './routes/formRoutes.js';
-import { initialBookings } from './bookingsData.js'; // Import bookings data
+import { initialBookings } from './bookingsData3.js'; // Import bookings data
 import { barbers } from './barberData.js'; // Import barbers data
 import kBooking from './utils/kBooking.js';
 
