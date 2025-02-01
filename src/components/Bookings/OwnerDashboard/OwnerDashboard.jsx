@@ -7,10 +7,11 @@ const OwnerDashboard = () => {
   const [selectedBarber, setSelectedBarber] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState(themes.default);
-  const [bookings, setBookings] = useState([]);
+  const [initialBookings, setInitialBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch bookings from the API
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -19,37 +20,43 @@ const OwnerDashboard = () => {
           throw new Error('Failed to fetch bookings');
         }
         const data = await response.json();
-        setBookings(data);
+        setInitialBookings(data); // Set the fetched data to initialBookings
       } catch (error) {
-        setError(error.message);
+        setError(error.message); // Set error message if something goes wrong
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after the fetch completes
       }
     };
 
-    fetchBookings();
-  }, []);
+    fetchBookings(); // Call the fetch function
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  // Render loading or error states if applicable
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
       <h1>Barbershop Appointments</h1>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {!loading && !error && (
-        <CalendarDisplay
-          initialBookings={bookings}
-          selectedBarber={selectedBarber}
-          searchQuery={searchQuery}
-          theme={theme}
-        />
-      )}
+
+      {/* Calendar Display */}
+      <CalendarDisplay
+        initialBookings={initialBookings}
+        selectedBarber={selectedBarber}
+        searchQuery={searchQuery}
+        theme={theme}
+      />
     </div>
   );
 };
 
 export default OwnerDashboard;
 
-// // OwnerDashboard.jsx
 // import React, { useState } from 'react';
 // import CalendarDisplay from './CalendarDisplay/CalendarDisplay';
 // import { initialBookings } from './bookingsData';
@@ -60,10 +67,6 @@ export default OwnerDashboard;
 //   const [selectedBarber, setSelectedBarber] = useState('All');
 //   const [searchQuery, setSearchQuery] = useState('');
 //   const [theme, setTheme] = useState(themes.default);
-  
-
-  
-
 //   return (
 //     <div className="dashboard-container" style={{ backgroundColor: theme.background, color: theme.text }}>
 //       <h1>Barbershop Appointments</h1>
@@ -80,6 +83,7 @@ export default OwnerDashboard;
 // };
 
 // export default OwnerDashboard;
+
 // import React, { useEffect, useState } from 'react';
 // import FullCalendar from '@fullcalendar/react';
 // import dayGridPlugin from '@fullcalendar/daygrid';
