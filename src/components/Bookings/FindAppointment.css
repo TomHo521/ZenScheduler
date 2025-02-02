@@ -1,5 +1,109 @@
-/* Find Appointment Styles */
 .find-appointment {
+  /* Theme Variables */
+  --find-appointment-background: var(--background);
+  --find-appointment-primary: var(--primary);
+  --find-appointment-secondary: var(--secondary);
+  --find-appointment-text: var(--text);
+  --find-appointment-card-background: var(--card-background);
+  --find-appointment-card-border: var(--card-border);
+  --find-appointment-card-shadow: var(--card-shadow);
+  --find-appointment-button-text: var(--button-text);
+  --find-appointment-button-hover: var(--button-hover);
+
+  /* Spacing Variables */
+  --find-appointment-spacing-small: 10px;
+  --find-appointment-spacing-medium: 16px;
+  --find-appointment-spacing-large: 20px;
+  --find-appointment-spacing-xlarge: 30px;
+
+  /* Component Styles */
+  background-color: var(--find-appointment-background);
+  border-radius: 8px;
+  padding: var(--find-appointment-spacing-large);
+  box-shadow: var(--find-appointment-card-shadow);
+  margin-bottom: var(--find-appointment-spacing-xlarge);
+  text-align: center;
+}
+
+.find-appointment h3 {
+  color: var(--find-appointment-primary);
+  font-size: 20px;
+  margin-bottom: var(--find-appointment-spacing-medium);
+}
+
+.date-picker-section {
+  margin-bottom: var(--find-appointment-spacing-large);
+}
+
+.date-picker-section label {
+  font-size: 16px;
+  color: var(--find-appointment-text);
+  display: block;
+  margin-bottom: var(--find-appointment-spacing-small);
+}
+
+.date-picker {
+  padding: var(--find-appointment-spacing-small);
+  border-radius: 4px;
+  border: 1px solid var(--find-appointment-card-border);
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.selected-details {
+  margin-top: var(--find-appointment-spacing-large);
+  padding: var(--find-appointment-spacing-medium);
+  background-color: var(--find-appointment-card-background);
+  border-radius: 8px;
+  border: 1px solid var(--find-appointment-card-border);
+  text-align: left;
+}
+
+.selected-details h4 {
+  font-size: 18px;
+  color: var(--find-appointment-primary);
+  margin-bottom: 12px;
+}
+
+.selected-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--find-appointment-spacing-small);
+  font-size: 16px;
+}
+
+.selected-item .label {
+  font-weight: 500;
+  color: var(--find-appointment-secondary);
+}
+
+.selected-item .value {
+  font-weight: 500;
+  color: var(--find-appointment-primary);
+}
+
+.booking-button {
+  background-color: var(--find-appointment-primary);
+  color: var(--find-appointment-button-text);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: var(--find-appointment-spacing-large);
+}
+
+.booking-button:hover {
+  background-color: var(--find-appointment-button-hover);
+}
+
+
+/* .find-appointment {
     background-color: var(--background);
     border-radius: 8px;
     padding: 20px;
@@ -35,8 +139,7 @@
     margin: 0 auto;
     display: block;
   }
-  
-  /* Selected Details Section */
+ 
   .selected-details {
     margin-top: 20px;
     padding: 16px;
@@ -69,7 +172,6 @@
     color: var(--primary);
   }
   
-  /* Booking Button */
   .booking-button {
     background-color: var(--primary);
     color: var(--button-text);
@@ -85,4 +187,4 @@
   
   .booking-button:hover {
     background-color: var(--button-hover);
-  }
+  } */

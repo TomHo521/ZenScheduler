@@ -4,9 +4,11 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url'; // Needed to resolve __dirname in ES modules
 import formRoutes from './routes/formRoutes.js';
+
 import { initialBookings } from './bookingsData3.js'; // Import bookings data
 import { barbers } from './barberData.js'; // Import barbers data
 import kBooking from './utils/kBooking.js';
+import bookingsRoutes from './routes/bookingsRoutes.js';
 
 
 const kBookingSystem = new kBooking(3);  
@@ -19,7 +21,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // API routes
+app.use('/db', bookingsRoutes);
 app.use('/api/forms', formRoutes);
+
 
 // GET endpoint for bookings
 app.get('/api/bookings', (req, res) => {

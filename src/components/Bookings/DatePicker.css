@@ -1,5 +1,89 @@
-/* Date Picker Styles */
 .date-picker {
+  /* Theme Variables */
+  --date-picker-background: var(--background);
+  --date-picker-primary: var(--primary);
+  --date-picker-secondary: var(--secondary);
+  --date-picker-text: var(--text);
+  --date-picker-card-shadow: var(--card-shadow);
+  --date-picker-button-text: var(--button-text);
+  --date-picker-button-hover: var(--button-hover);
+
+  /* Spacing Variables */
+  --date-picker-spacing-small: 8px;
+  --date-picker-spacing-medium: 16px;
+  --date-picker-spacing-large: 30px;
+
+  /* Component Styles */
+  background-color: var(--date-picker-background);
+  border-radius: 8px;
+  padding: var(--date-picker-spacing-medium);
+  box-shadow: var(--date-picker-card-shadow);
+  width: 250px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--date-picker-spacing-medium);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--date-picker-primary);
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--date-picker-primary);
+  transition: color 0.3s ease;
+}
+
+.calendar-header button:hover {
+  color: var(--date-picker-button-hover);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--date-picker-spacing-small);
+}
+
+.calendar-day-header {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--date-picker-secondary);
+  text-align: center;
+}
+
+.calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--date-picker-text);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.calendar-day:hover,
+.calendar-day.selected {
+  background-color: var(--date-picker-primary);
+  color: var(--date-picker-button-text);
+}
+
+.calendar-day.empty {
+  background-color: transparent;
+  cursor: default;
+}
+
+
+
+/* .date-picker {
     background-color: var(--background);
     border-radius: 8px;
     padding: 16px;
@@ -69,4 +153,4 @@
   .calendar-day.empty {
     background-color: transparent;
     cursor: default;
-  }
+  } */

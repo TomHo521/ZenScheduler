@@ -1,5 +1,131 @@
-/* Time Picker Section */
 .time-picker-section {
+  /* Theme Variables */
+  --time-picker-background: var(--background);
+  --time-picker-primary: var(--primary);
+  --time-picker-secondary: var(--secondary);
+  --time-picker-text: var(--text);
+  --time-picker-card-background: var(--card-background);
+  --time-picker-card-border: var(--card-border);
+  --time-picker-card-shadow: var(--card-shadow);
+  --time-picker-button-text: var(--button-text);
+  --time-picker-button-hover: var(--button-hover);
+
+  /* Spacing Variables */
+  --time-picker-spacing-small: 8px;
+  --time-picker-spacing-medium: 16px;
+  --time-picker-spacing-large: 20px;
+  --time-picker-spacing-xlarge: 30px;
+
+  /* Component Styles */
+  background-color: var(--time-picker-background);
+  border-radius: 8px;
+  padding: var(--time-picker-spacing-large);
+  box-shadow: var(--time-picker-card-shadow);
+  margin-bottom: var(--time-picker-spacing-xlarge);
+}
+
+.time-picker-section h3 {
+  color: var(--time-picker-primary);
+  font-size: 20px;
+  margin-bottom: var(--time-picker-spacing-medium);
+  text-align: center;
+}
+
+.time-barber-container {
+  display: flex;
+  gap: var(--time-picker-spacing-large);
+  justify-content: center;
+}
+
+.time-slots,
+.barber-slots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--time-picker-card-border);
+  border-radius: 8px;
+  padding: var(--time-picker-spacing-small);
+  background-color: var(--time-picker-card-background);
+}
+
+.time-slot,
+.barber-slot {
+  padding: var(--time-picker-spacing-small);
+  margin: 5px 0;
+  width: 120px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--time-picker-text);
+}
+
+.time-slot:hover,
+.barber-slot:hover,
+.time-slot.selected,
+.barber-slot.selected {
+  background-color: var(--time-picker-primary);
+  color: var(--time-picker-button-text);
+}
+
+.barber-slot.unavailable {
+  color: var(--time-picker-secondary);
+  cursor: not-allowed;
+}
+
+.barber-slot.unavailable:hover {
+  background-color: transparent;
+  color: var(--time-picker-secondary);
+}
+
+.time-picker-section .booking-button {
+  display: block;
+  margin: var(--time-picker-spacing-large) auto 0;
+}
+
+.time-column,
+.barber-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 var(--time-picker-spacing-small);
+}
+
+.section-label {
+  font-weight: bold;
+  margin-bottom: var(--time-picker-spacing-small);
+  padding: 0 var(--time-picker-spacing-small);
+}
+
+.scroll-container {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--time-picker-card-border);
+  border-radius: 4px;
+  padding: var(--time-picker-spacing-small);
+}
+
+.time-slot:hover,
+.barber-slot:hover {
+  background-color: var(--time-picker-card-background);
+}
+
+.time-slot.selected,
+.barber-slot.selected {
+  background-color: var(--time-picker-primary);
+  color: var(--time-picker-button-text);
+}
+
+.barber-slot.unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* .time-picker-section {
     background-color: var(--background);
     border-radius: 8px;
     padding: 20px;
@@ -69,14 +195,13 @@
     color: var(--secondary);
   }
   
-  /* Center the "Book at Selected Time" Button */
   .time-picker-section .booking-button {
     display: block;
     margin: 20px auto 0;
   }
 
 
-  /* TimePicker.css */
+
 .time-column, .barber-column {
   flex: 1;
   display: flex;
@@ -91,7 +216,7 @@
 }
 
 .scroll-container {
-  height: 300px; /* Fixed height for scrolling */
+  height: 300px; 
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -106,7 +231,7 @@
   transition: background-color 0.2s;
 }
 
-/* Keep existing hover/selected styles */
+
 .time-slot:hover, .barber-slot:hover { background-color: #f0f0f0; }
 .time-slot.selected, .barber-slot.selected { background-color: #007bff; color: white; }
-.barber-slot.unavailable { opacity: 0.5; cursor: not-allowed; }
+.barber-slot.unavailable { opacity: 0.5; cursor: not-allowed; } */

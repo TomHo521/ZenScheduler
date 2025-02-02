@@ -1,55 +1,71 @@
-/* Book Next Available Styles */
 .book-next-available {
-    background-color: var(--background);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: var(--card-shadow);
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .book-next-available h3 {
-    color: var(--primary);
-    font-size: 20px;
-    margin-bottom: 16px;
-  }
-  
-  .next-available-time {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--primary);
-    margin-bottom: 20px;
-  }
-  
-  .clock-animation {
-    max-height: 100px;
-    overflow-y: auto;
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 10px;
-    background-color: var(--card-background);
-    margin-bottom: 20px;
-  }
-  
-  .clock-time {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-    text-align: center;
-  }
-  
-  .booking-button {
-    background-color: var(--primary);
-    color: var(--button-text);
-    border: none;
-    border-radius: 4px;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .booking-button:hover {
-    background-color: var(--button-hover);
-  }
+  /* Theme Variables */
+  --book-next-available-background: var(--background);
+  --book-next-available-primary: var(--primary);
+  --book-next-available-text: var(--text);
+  --book-next-available-card-background: var(--card-background);
+  --book-next-available-card-border: var(--card-border);
+  --book-next-available-card-shadow: var(--card-shadow);
+  --book-next-available-button-text: var(--button-text);
+  --book-next-available-button-hover: var(--button-hover);
+
+  /* Spacing Variables */
+  --book-next-available-spacing-small: 10px;
+  --book-next-available-spacing-medium: 16px;
+  --book-next-available-spacing-large: 20px;
+  --book-next-available-spacing-xlarge: 30px;
+
+  /* Component Styles */
+  background-color: var(--book-next-available-background);
+  border-radius: 8px;
+  padding: var(--book-next-available-spacing-large);
+  box-shadow: var(--book-next-available-card-shadow);
+  margin-bottom: var(--book-next-available-spacing-xlarge);
+  text-align: center;
+}
+
+.book-next-available h3 {
+  color: var(--book-next-available-primary);
+  font-size: 20px;
+  margin-bottom: var(--book-next-available-spacing-medium);
+}
+
+.next-available-time {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--book-next-available-primary);
+  margin-bottom: var(--book-next-available-spacing-large);
+}
+
+.clock-animation {
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid var(--book-next-available-card-border);
+  border-radius: 8px;
+  padding: var(--book-next-available-spacing-small);
+  background-color: var(--book-next-available-card-background);
+  margin-bottom: var(--book-next-available-spacing-large);
+}
+
+.clock-time {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--book-next-available-text);
+  text-align: center;
+}
+
+.book-next-available .booking-button {
+  background-color: var(--book-next-available-primary);
+  color: var(--book-next-available-button-text);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.book-next-available .booking-button:hover {
+  background-color: var(--book-next-available-button-hover);
+}
